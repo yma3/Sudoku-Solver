@@ -11,7 +11,7 @@
 using namespace std;
 
 
-bool isBlank( int grid[N][N], int row, int col);
+bool isBlank( int grid[N][N], int &row, int &col);
 bool inRow( int grid[N][N], int row, int num);
 bool inCol( int grid[N][N], int col, int num);
 bool inBlock( int grid[N][N], int row, int col, int num);
@@ -37,7 +37,7 @@ bool sudokusolve( int grid[N][N] )
 	}
 	for (int num = 1; num <= 9; num++)
 	{
-		if( (!inRow(grid, row, num)) && (!inCol(grid, col, num)) && (!inBlock(grid, row - row%3, col - col%3, num)))
+		if( (!inRow(grid, row, num)) && (!inCol(grid, col, num)) && (!inBlock(grid, (row - (row%3)), (col - (col%3)), num)))
 		{
 			grid[row][col] = num;
 			if( sudokusolve(grid))
@@ -51,7 +51,7 @@ bool sudokusolve( int grid[N][N] )
 }
 
 
-bool isBlank( int grid[N][N], int row, int col)
+bool isBlank( int grid[N][N], int &row, int &col)
 {
 	for( row = 0; row < N; row++)
 	{
